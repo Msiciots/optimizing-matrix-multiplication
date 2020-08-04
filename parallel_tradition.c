@@ -35,7 +35,7 @@ void* calculate(void* in){
 void main(int argc, char* argv[]){
 	
 	FILE *f = fopen(argv[1], "r");
-	FILE *out = fopen("output/traditional_output", "w");
+	FILE *out = fopen("output/parallel_tradition_output", "w");
 
 	// read input
 	fscanf(f,"%d",&array_size);
