@@ -20,13 +20,14 @@ int main(int argc, char* argv[])
     FILE *f;
     f=fopen(argv[1],"r");
     fscanf(f,"%d",&matrix_size);
-    fclose(f);
+    
     matrix1=allocate_memery(matrix_size);
     matrix2=allocate_memery(matrix_size);
     result=allocate_memery(matrix_size);
     read_matrix(matrix1,matrix_size,1,argv[1]);
     read_matrix(matrix2,matrix_size,2,argv[1]);
-    printf("Read file finished.\n");
+    //printf("Read file finished.\n");
+    fclose(f);
     m1=allocate_memery(matrix_size/2);
     m2=allocate_memery(matrix_size/2);
     m3=allocate_memery(matrix_size/2);
@@ -35,9 +36,10 @@ int main(int argc, char* argv[])
     m6=allocate_memery(matrix_size/2);
     m7=allocate_memery(matrix_size/2);
 
-    clock_t t_start,t_end;
-    t_start=clock();
-    printf("Calculating...\n");
+    clock_t start,end;
+    printf("Multiply two %dx%d matrixes\n",matrix_size,matrix_size);
+    start=clock();
+        //printf("Calculating...\n");
     pthread_t thread[7];
     pthread_create(&thread[0],NULL, &m1_evalue,matrix_size);
     pthread_create(&thread[1],NULL, &m2_evalue, matrix_size);
@@ -87,11 +89,12 @@ int main(int argc, char* argv[])
     free(r3);
     free(r4);
 
-    t_end=clock();
+    end=clock();
 
     print_matrix(result,matrix_size);
-    float exc_time = (float)(t_end - t_start) / CLOCKS_PER_SEC;
-    printf("strassen execution time: %f\n",exc_time);
+    // float exc_time = (float)(t_end - t_start) / CLOCKS_PER_SEC;
+    //printf("strassen execution time: %f\n",exc_time);
+    printf("Elapsed time: %f\n",(double)(end-start)/CLOCKS_PER_SEC);
 
     return 0;
 }
@@ -152,9 +155,9 @@ void read_matrix(int **m,int size,int num,char * test_file)
 }
 void print_matrix(int **m,int size)
 {
-    printf("Exporting file...\n");
+    //printf("Exporting file...\n");
     FILE *f;
-    f=fopen("strassen_output","w");
+    f=fopen("output/strassen_output","w");
     int i,j;
     for (i = 0; i < size; i++)
         {
@@ -163,7 +166,7 @@ void print_matrix(int **m,int size)
                 fprintf(f,"%d ",m[i][j]);
             }fprintf(f,"\n");
         }
-    printf("Exporting file finished.\n");
+    //printf("Exporting file finished.\n");
 }
 void m1_evalue(int n){
     int ** a = allocate_memery(n/2);
@@ -270,7 +273,7 @@ void m6_evalue(int n){
     }
     for(int i=0; i<n/2; i++){
         for(int j=0; j<n/2; j++){
-                int sum=0;
+            int sum=0;
             for(int k=0; k<n/2; k++){
                 sum+=a[i][k]*b[k][j];}
             m6[i][j]=sum;
