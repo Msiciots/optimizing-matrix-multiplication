@@ -47,6 +47,7 @@ int main(int argc, char* argv[]){
     // }
 
     //start clock
+    printf("Multiply two %dx%d matrixes\n",array_size,array_size);
     clock_t start, end;
     start = clock();
     //multiply
