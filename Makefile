@@ -9,4 +9,7 @@ clean:
 	rm -rf strassen
 	rm -rf parallel_tradition
 	rm -rf transpose
+	rm -rf tradition
 	rm -rf output/parallel_tradition_output
+	rm -rf output/tradition_output
+	rm -rf output/transpose_output
