@@ -13,3 +13,4 @@ clean:
 	rm -rf output/parallel_tradition_output
 	rm -rf output/tradition_output
 	rm -rf output/transpose_output
+	rm -rf output/strassen_output
