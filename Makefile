@@ -10,7 +10,7 @@ clean:
 	rm -rf parallel_tradition
 	rm -rf transpose
 	rm -rf tradition
-	rm -rf output/parallel_tradition_output
-	rm -rf output/tradition_output
-	rm -rf output/transpose_output
-	rm -rf output/strassen_output
+	rm -rf output_data/parallel_tradition_output
+	rm -rf output_data/tradition_output
+	rm -rf output_data/transpose_output
+	rm -rf output_data/strassen_output
