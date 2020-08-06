@@ -6,7 +6,6 @@ int main(int argc,char* argv[]) {
     char ch;
     int array_size;
 
-
 //read input
     FILE *fp;
     fp = fopen(argv[1], "r");
@@ -15,10 +14,7 @@ int main(int argc,char* argv[]) {
         perror("Error while opening input file.\n");
         exit(EXIT_FAILURE);
     }
-    if (out == NULL) {
-        perror("Error while opening the output file.\n");
-        exit(EXIT_FAILURE);
-    }
+    
 //input first matrix
     fscanf(fp,"%d",&array_size);
 
@@ -85,7 +81,6 @@ int main(int argc,char* argv[]) {
         }
         fprintf(out,"\n");
     }
-
 
     printf("Elapsed time: %f\n",(double)(end-start)/CLOCKS_PER_SEC);
     fprintf(out,"\nElapsed time: %f\n",(double)(end-start)/CLOCKS_PER_SEC);
