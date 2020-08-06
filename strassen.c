@@ -41,9 +41,9 @@ int main(int argc, char* argv[]) {
 
     clock_t start,end;
     printf("Multiply two %dx%d matrixes\n",matrix_size,matrix_size);
+    pthread_t thread[7];
     start=clock();
     //printf("Calculating...\n");
-    pthread_t thread[7];
     pthread_create(&thread[0],NULL, &m1_evalue,matrix_size);
     pthread_create(&thread[1],NULL, &m2_evalue, matrix_size);
     pthread_create(&thread[2],NULL, &m3_evalue, matrix_size);
@@ -66,6 +66,7 @@ int main(int argc, char* argv[]) {
             r4[i][j]=(m1[i][j]-m2[i][j])+(m3[i][j]+m6[i][j]);
         }
     }
+    end=clock();
     free(m1);
     free(m2);
     free(m3);
@@ -91,8 +92,6 @@ int main(int argc, char* argv[]) {
     free(r2);
     free(r3);
     free(r4);
-
-    end=clock();
 
     print_matrix(result,matrix_size);
     // float exc_time = (float)(t_end - t_start) / CLOCKS_PER_SEC;

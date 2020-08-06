@@ -15,10 +15,6 @@ int main(int argc,char* argv[]) {
         perror("Error while opening input file.\n");
         exit(EXIT_FAILURE);
     }
-    if (out == NULL) {
-        perror("Error while opening the output file.\n");
-        exit(EXIT_FAILURE);
-    }
 //input first matrix
     fscanf(fp,"%d",&array_size);
 

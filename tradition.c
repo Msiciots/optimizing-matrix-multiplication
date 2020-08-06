@@ -83,5 +83,8 @@ int main(int argc, char* argv[]) {
 
     printf("Elapsed time: %f\n",(double)(end-start)/CLOCKS_PER_SEC);
     fprintf(out,"\nElapsed time: %f\n",(double)(end-start)/CLOCKS_PER_SEC);
+
+    FILE *t = fopen("test_data/tradition_test4096", "a");
+    fprintf(t,"%f\n",(double)(end-start)/CLOCKS_PER_SEC);
     return 0;
 }
