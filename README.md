@@ -80,11 +80,3 @@ $ ./strassen ./input_data/test_data_1
 ```
 The running results are in ./output_data .
 The terminal will also show the time of matrix multiplication.
-## Test
-Each result value is the average of 10 execution times.
-| Method  | Matrix size of 1024*1024 |Matrix size of  4096*4096 |
-| -------- | -------- | -------- |
-| Tradition|||
-| Parallel Tradition |||
-| Transpose|||
-| Strassen|||
