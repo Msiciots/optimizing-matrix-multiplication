@@ -3,8 +3,8 @@ An exercise to optimize matrix multiplication which implemented in C. Then compa
 ## Optimize methods
 The way of matrix multiplication.
 
-![matrix multiplication](https://i.imgur.com/7uDlrL1.png)
-![equation](https://i.imgur.com/IAwAYeM.png)
+![matrix multiplication](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/matrix-mul.png)
+![equation](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/mul-equation.png)
 **Use symbols for simplicity**  
 A : The multiplicand matrix  
 B : The multiplier matrix  
@@ -13,53 +13,53 @@ C : The product matrix
 ### Transpose matrix
 C stores matrix elements in row-major order, but we access B in col-major order. Therefore, we can transfer B into a transposed matrix, and accelerate the time of matrix multiplication.
 
-![transpose](https://i.imgur.com/vvaYDJd.png)
+![transpose](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/trans.png)
 ### Parallelize process
 Divide matrix into four small matrix and multiply. Use C pthread to create four thread for parallel computing.
 
-![parallel](https://i.imgur.com/bGP329z.png)
+![parallel](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/paralell.png)
 ### Strassen algorithm
-The time complexity of standard matrix multiplication is ![](https://i.imgur.com/bBvwcei.png). Strassen’s algorithm only has seven matrix multiplication operations in each divide and conquer method, The output time complexity is ![](https://i.imgur.com/YMHoJ7G.png).
+The time complexity of standard matrix multiplication is ![](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/complexity-1.png). Strassen’s algorithm only has seven matrix multiplication operations in each divide and conquer method, The output time complexity is ![](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/complexity-2.png).
 
 Let A, B be two square matrices over a ring R. We want to calculate the matrix product C as
 
-![](https://i.imgur.com/9qNlNPt.png)
+![](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/derivation-1.png)
 
 If the matrices A, B are not of type 2^n × 2^n we fill the missing rows and columns with zeros.
 
 We partition A, B and C into equally sized block matrices
 
-![](https://i.imgur.com/JnVFjMp.png)
+![](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/derivation-2.png)
 
 with  
 
-![](https://i.imgur.com/hMZc52A.png)
+![](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/derivation-3.png)
 
 The naive algorithm would be:
 
-![](https://i.imgur.com/8Qa8qyL.png)  
-![](https://i.imgur.com/l7qqp8u.png)  
-![](https://i.imgur.com/CqZOO5p.png)  
-![](https://i.imgur.com/3bRtdJ3.png)  
+![](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/derivation-4.png)  
+![](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/derivation-5.png)  
+![](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/derivation-6.png)  
+![](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/derivation-7.png)  
 
 With this construction we have not reduced the number of multiplications. We still need 8 multiplications to calculate the Ci,j matrices, the same number of multiplications we need when using standard matrix multiplication.
 
 The Strassen algorithm defines instead new matrices:
 
-![](https://i.imgur.com/7Z3xNWe.png)  
-![](https://i.imgur.com/Th5FPhT.png)  
-![](https://i.imgur.com/9vw8nou.png)  
-![](https://i.imgur.com/ld8H1gH.png)  
-![](https://i.imgur.com/QZHuNR1.png)  
-![](https://i.imgur.com/4KC9K25.png)  
-![](https://i.imgur.com/DuEGbKR.png)  
+![](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/derivation-8.png)  
+![](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/derivation-9.png)  
+![](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/derivation-10.png)  
+![](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/derivation-11.png)  
+![](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/derivation-12.png)  
+![](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/derivation-13.png)  
+![](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/derivation-14.png)  
 
 only using 7 multiplications (one for each Mk) instead of 8. We may now express the Ci,j in terms of Mk:
 
-![](https://i.imgur.com/kDjXAJA.png)  
-![](https://i.imgur.com/T8sUNeR.png)  
-![](https://i.imgur.com/J16rIjD.png)  
-![](https://i.imgur.com/doaa9mJ.png)  
+![](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/derivation-15.png)  
+![](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/derivation-16.png)  
+![](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/derivation-17.png)  
+![](https://github.com/Msiciots/optimizing-matrix-multiplication/raw/master/doc-img/derivation-18.png)  
 
 I used Strassen algorithm to multiply matrixes and divide M1 ~ M7 to seven threads in parallel computing.  
 
